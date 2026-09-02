@@ -234,8 +234,15 @@ Before using or re-sharing any part of the project, ensure compliance with the a
 
 ---
 
+## 👨‍💻 Developer
+
 <div align="center">
 
-Built with Flutter for HRMS and vehicle-pass operations.
+**Anchit Chourasia**
+
+[![GitHub](https://img.shields.io/badge/GitHub-anchitchourasia-181717?style=flat-square&logo=github)](https://github.com/anchitchourasia)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Anchit_Chourasia-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/anchit-chourasia-65b603226)
 
 </div>
+
+--
