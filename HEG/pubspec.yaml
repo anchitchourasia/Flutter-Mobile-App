@@ -1,0 +1,51 @@
+name: flutter_demo_app
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  sqflite: ^2.4.0
+  path: ^1.9.0
+  path_provider: ^2.1.5
+  file_picker: ^8.1.7
+  open_filex: ^4.7.0
+  shared_preferences: ^2.3.2
+  http: ^1.2.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  connectivity_plus: ^6.0.5
+  stomp_dart_client: ^1.0.0
+  get: ^4.6.6
+  flutter_dotenv: ^5.2.1
+  share_plus: ^12.0.2
+  pdf: ^3.10.8
+  printing: ^5.12.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.14.4
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/.env
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/image.jpg"
+  adaptive_icon_foreground: "assets/icon/image3.jpg"
+  adaptive_icon_background: "#0B1E3A"
+  min_sdk_android: 21
+  remove_alpha_ios: true
