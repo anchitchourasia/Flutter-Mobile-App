@@ -1,104 +1,165 @@
+<div align="center">
+
 # HEG HRMS Mobile Application
 
-A Flutter-based mobile application for internal HR operations, vehicle-pass workflows, permissions, employee lookups, document handling, approvals, and gate-log integration.
+### Flutter-based HRMS, Vehicle Pass, and Operational Workflow Platform
 
-> **Status:** Active development — the dashboard and key workflow modules are available, while several HRMS modules continue to evolve.
+[![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-0175C2?logo=dart&logoColor=white)](https://dart.dev)
+[![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-0EA5A4)](#supported-platforms)
+[![Status](https://img.shields.io/badge/Status-Active%20Development-F59E0B)](#project-status)
+
+A mobile-first workspace for HR operations, vehicle-pass workflows, permissions, documents, approvals, and gate-related activities.
+
+</div>
+
+---
 
 ## Overview
 
-HEG HRMS Mobile Application brings multiple internal operational workflows into a unified Flutter client. The project focuses on a mobile-first experience for HR teams, security teams, approvers, employees, contractors, and gate operations.
+**HEG HRMS Mobile Application** is a Flutter project that consolidates operational workflows into a clear, role-oriented mobile experience. It provides a foundation for employees, contractors, security teams, and approvers to work with vehicle passes, supporting documents, employee data, notifications, and related HRMS processes.
 
-The application is structured around reusable screens, models, service layers, API clients, and widgets. It supports both Android and iOS project targets and is designed to connect to environment-specific backend services without publishing any infrastructure details in source control.
+The project follows a modular Flutter structure with dedicated layers for data access, models, services, feature screens, and reusable UI components. Runtime infrastructure details are intentionally excluded from this public repository.
 
-## Highlights
+## Product Preview
 
-- Mobile dashboard with role-oriented navigation.
-- Vehicle Pass Registry with search, filtering, summary cards, pagination, and empty states.
-- Pass entry, update, read-only review, and sticker-generation workflows.
-- Employee and contractor lookup with type validation.
-- Document metadata, attachment selection, download support, and compliance-oriented flows.
-- Workflow actions for saving, submission, confirmation, approval, rejection, and modification.
-- Pass history and status visibility.
-- Permission-system and CVPS-oriented screens.
-- Profile, notifications, insurance, leave, attendance, and employee-management foundations.
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <strong>Mobile Dashboard</strong><br/><br/>
+      <img src="docs/screenshots/dashboard.png" alt="HEG HRMS mobile dashboard" width="280" />
+    </td>
+    <td align="center" width="50%">
+      <strong>Vehicle Pass Registry</strong><br/><br/>
+      <img src="docs/screenshots/pass-registry.png" alt="Vehicle Pass Registry screen" width="280" />
+    </td>
+  </tr>
+</table>
 
-## Screens
+> Screenshots are included for product demonstration. Public-facing examples should use approved, sanitized demo data only.
 
-### Mobile Dashboard
+## Key Capabilities
 
-The home experience presents a clear navigation hub for HRMS functions. Available modules include profile, pass, and permission operations; planned modules are clearly represented as works in progress.
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>📱 HRMS Dashboard</h3>
+      <ul>
+        <li>Mobile navigation hub for core HRMS workflows</li>
+        <li>Profile, pass, and permission system entry points</li>
+        <li>Clear placeholders for modules under development</li>
+        <li>Responsive, mobile-first user interface</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h3>🚗 Vehicle Pass Registry</h3>
+      <ul>
+        <li>Search by pass, vehicle, employee, or contractor details</li>
+        <li>Status, employee-type, and vehicle-type filters</li>
+        <li>Summary cards, page-size controls, and pagination</li>
+        <li>Dedicated empty-state experience for no matching results</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>📝 Pass Workflow</h3>
+      <ul>
+        <li>Create, save, submit, edit, and read-only pass flows</li>
+        <li>Vehicle, gate, parking, employee, and contractor details</li>
+        <li>Document details, attachments, and download support</li>
+        <li>Pass stickers for eligible workflow states</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h3>✅ Approval and Audit</h3>
+      <ul>
+        <li>Workflow actions for confirmation, approval, rejection, and modification</li>
+        <li>Status visibility and pass-history presentation</li>
+        <li>Employee and contractor lookup with validation</li>
+        <li>Foundations for permissions, CVPS, insurance, and notifications</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-### Vehicle Pass Registry
+## Workflow Lifecycle
 
-The Vehicle Pass Registry is a read-only operational view for finding and reviewing pass records. It supports searching by pass, vehicle, employee, or contractor details and filtering by status, employee type, and vehicle type. The screen includes page-size controls, pagination, visual status indicators, and a dedicated no-results state rather than failing when a filter produces no matching records.
+```text
+SAVED
+  │
+  ├── Submit ──> SUBMITTED ──> CONFIRMED ──> ACTIVE
+  │                              │
+  │                              ├── Reject ──> REJECT
+  │                              │
+  │                              └── Request Changes ──> MODIFY / NEEDS_MODIFICATION
+  │                                                               │
+  └───────────────────────────────────────────────────────────────┘
+                         Save, update, and resubmit
+```
 
-### Pass Entry and Review
+The registry is designed around auditability: workflow state changes preserve the record rather than relying on destructive deletion.
 
-The pass flow captures vehicle, employee or contractor, gate, parking, pass, and document details. It supports save and submit actions, view mode, approval-oriented actions, and historical status visibility.
+## Application Modules
 
-### Supporting HRMS Modules
-
-The project includes screens and foundations for login, profile, applicants, employee details, insurance upload and review, notifications, leave, attendance, manpower, overtime, settings, self-service, CVPS, and approver-related workflows.
+| Module | Scope |
+| --- | --- |
+| Dashboard | Role-oriented navigation to available HRMS functions |
+| Authentication | Login and session-oriented application entry |
+| Profile | Employee-focused profile experience |
+| Vehicle Pass Registry | Search, filters, summaries, pagination, pass review |
+| Pass Entry | Vehicle, employee/contractor, gate, parking, and document capture |
+| Approval Workflow | Confirmation, approval, rejection, modification, and history flows |
+| Permission System | Permission and CVPS-related workflows |
+| Insurance | Upload and detail/review screens |
+| Notifications | Notification-view foundation |
+| Attendance, Employees, Settings | Planned or actively evolving modules |
 
 ## Architecture
 
 ```text
-Flutter Client
-├── Core configuration and application bootstrap
-├── Data/API clients
-├── Domain models
-├── Feature screens and workflows
-├── Reusable UI widgets
-└── Platform targets: Android, iOS, Web, Windows, macOS, Linux
-```
-
-The source tree includes dedicated `core`, `data`, `models`, `screens`, `services`, and `widgets` layers. The public repository intentionally excludes private backend environments and local runtime values.
-
-## Technology
-
-| Area | Tools and libraries |
-| --- | --- |
-| Client framework | Flutter and Dart |
-| Networking | `http` |
-| Local storage | `shared_preferences`, `sqflite`, `hive`, `hive_flutter` |
-| Documents | `file_picker`, `open_filex`, `share_plus` |
-| PDF workflows | `pdf`, `printing` |
-| Connectivity and messaging | `connectivity_plus`, `stomp_dart_client` |
-| Runtime configuration | `flutter_dotenv` |
-| Static analysis | `flutter_lints` |
-| Delivery pipeline | Jenkins-based CI/CD |
-
-## Repository Layout
-
-```text
 HEG/
-├── android/                 # Android platform target
-├── ios/                     # iOS platform target
-├── web/                     # Web platform target
-├── windows/                 # Windows platform target
-├── macos/                   # macOS platform target
-├── linux/                   # Linux platform target
-├── assets/                  # Bundled visual assets
 ├── lib/
-│   ├── core/                # Bootstrap and configuration abstractions
-│   ├── data/                # API and data-access clients
-│   ├── models/              # Data models
-│   ├── screens/             # HRMS feature pages
-│   ├── services/            # Application services
-│   └── widgets/             # Shared user-interface components
-└── pubspec.yaml             # Dependencies and app metadata
+│   ├── core/        Application bootstrap and configuration abstractions
+│   ├── data/        API clients and data-access layer
+│   ├── models/      Domain, request, and response models
+│   ├── screens/     Feature screens and workflow pages
+│   ├── services/    Shared application services
+│   └── widgets/     Reusable visual components
+├── assets/          Packaged application assets
+├── android/         Android platform target
+├── ios/             iOS platform target
+├── web/             Web platform target
+├── windows/         Windows platform target
+├── macos/           macOS platform target
+├── linux/           Linux platform target
+└── pubspec.yaml     Dependencies and application metadata
 ```
+
+## Technology Stack
+
+| Category | Technology |
+| --- | --- |
+| Mobile framework | Flutter and Dart |
+| HTTP integration | `http` |
+| Local persistence | `shared_preferences`, `sqflite`, `hive`, `hive_flutter` |
+| Documents and files | `file_picker`, `open_filex`, `share_plus` |
+| PDF support | `pdf`, `printing` |
+| Connectivity and messaging | `connectivity_plus`, `stomp_dart_client` |
+| Environment support | `flutter_dotenv` |
+| Code quality | `flutter_lints` |
+| Delivery approach | Jenkins-based CI/CD |
 
 ## Getting Started
 
 ### Prerequisites
 
-- Flutter SDK compatible with the SDK constraint in `HEG/pubspec.yaml`.
-- Android Studio or Visual Studio Code with the Flutter and Dart extensions.
-- An Android emulator or physical Android device for Android testing.
-- macOS with Xcode for iOS builds and real-iPhone testing.
+- Flutter SDK compatible with the SDK constraint in `HEG/pubspec.yaml`
+- Android Studio or Visual Studio Code with Flutter and Dart extensions
+- Android SDK, emulator, or physical Android device
+- macOS with Xcode for iOS builds and real-device iPhone testing
 
-### Install
+### Run locally
 
 ```bash
 cd HEG
@@ -106,83 +167,75 @@ flutter pub get
 flutter run
 ```
 
-### Configuration
-
-The repository is designed to use local or environment-provided configuration. Do not commit production URLs, internal IP addresses, API keys, access tokens, passwords, database strings, or environment files.
-
-Create local configuration from approved project templates and keep actual values outside version control. Review `.gitignore` before committing configuration changes.
-
-### Android Device Development
-
-For local backend testing with a USB-connected Android device, create an ADB reverse tunnel using the port used by your local service:
-
-```bash
-adb reverse tcp:<PORT> tcp:<PORT>
-```
-
-This technique is for local development only. A release build should use an approved, stable, secured environment endpoint.
-
-### Build
+### Build an Android APK
 
 ```bash
 cd HEG
 flutter build apk --release
 ```
 
+### USB-connected Android device
+
+For local backend testing with a USB-connected Android device, use an ADB reverse tunnel with your own development port:
+
+```bash
+adb reverse tcp:<PORT> tcp:<PORT>
+```
+
+This is for local development only. A shareable or release build should use an approved, secured, reachable environment endpoint.
+
+## Security and Configuration
+
+This is a public showcase repository. Never commit real values for:
+
+- API keys, tokens, passwords, or certificates
+- Internal IP addresses, hostnames, or production URLs
+- Database credentials or connection strings
+- Local environment files
+- Private employee, contractor, vehicle, or pass information
+
+Keep runtime settings in local ignored configuration files or inject them through the approved Jenkins-based deployment process. If a credential was committed previously, rotate it; removing it only from the newest commit does not remove it from historical commits.
+
 ## Project Status
 
-| Area | Status |
+| Area | Current state |
 | --- | --- |
-| Dashboard shell and navigation | In progress |
-| Authentication and session flow | In progress |
+| Dashboard and navigation | Implemented and evolving |
 | Vehicle Pass Registry | Implemented and evolving |
-| Pass entry and review workflow | Implemented and evolving |
-| Approval and history workflow | Implemented and evolving |
-| Permission and CVPS capabilities | In progress |
-| Attendance, settings, and employee modules | Planned / in progress |
-| Production configuration and release hardening | In progress |
-
-## Security Notes
-
-This public repository is intended to demonstrate the application architecture and mobile implementation. It must contain only sanitized code and sample data.
-
-Before publishing changes, confirm that no real credentials or internal infrastructure details are present. If a credential was ever committed, rotate it immediately; removing it only from the newest version does not remove it from previous Git history.
+| Pass entry and review | Implemented and evolving |
+| Workflow and history | Implemented and evolving |
+| Permission and CVPS features | In progress |
+| Attendance, employee, and settings modules | Planned / in progress |
+| Production hardening and release configuration | In progress |
 
 ## Roadmap
 
-- Complete remaining dashboard modules.
-- Expand role-based workflow handling.
-- Improve offline and connectivity behavior.
-- Add broader operational reporting and analytics.
-- Strengthen release configuration and automated quality checks.
-- Continue accessibility, validation, and mobile UX improvements.
+- [ ] Complete the remaining dashboard modules
+- [ ] Expand role-based approval workflows
+- [ ] Enhance offline and connectivity handling
+- [ ] Extend reporting and operational analytics
+- [ ] Improve automated validation and quality checks
+- [ ] Continue refining accessibility and mobile UX
 
-## Screenshots
+## Supported Platforms
 
-Screenshots are intentionally not embedded yet because public images must be sanitized before upload. Replace all employee names, employee codes, vehicle numbers, pass numbers, contractor information, and other internal operational data with demo values before adding screenshots under `docs/screenshots/`.
+| Platform | Status |
+| --- | --- |
+| Android | Primary development and testing target |
+| iOS | Project target available; requires macOS and Xcode |
+| Web | Flutter project target available |
+| Windows, macOS, Linux | Flutter desktop targets available |
 
-Suggested image paths after sanitization:
+## About This Repository
 
-```text
-docs/screenshots/dashboard.png
-docs/screenshots/pass-registry.png
-```
+This repository is intended as a public, portfolio-friendly representation of the Flutter mobile client. It omits private backend services, internal configuration, and real environment credentials.
 
-Then embed them as follows:
+Before using or re-sharing any part of the project, ensure compliance with the applicable organization policies and confirm that all sample data and visuals are approved for public use.
 
-```md
-![Dashboard](docs/screenshots/dashboard.png)
-![Vehicle Pass Registry](docs/screenshots/pass-registry.png)
-```
+---
 
-## CI/CD
+<div align="center">
 
-The repository includes a Jenkins-oriented delivery pipeline. For production usage, environment-specific values should be injected through the organization’s approved secure build and deployment process rather than stored in the repository.
+Built with Flutter for HRMS and vehicle-pass operations.
 
-## License
-
-No open-source license is currently declared. Reuse, redistribution, and publication remain subject to the applicable owner and organization policies.
-
-## Author
-
-Built as a Flutter mobile application for HRMS, vehicle-pass management, permissions, and related operational workflows.
+</div>
